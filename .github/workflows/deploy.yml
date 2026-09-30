@@ -1,0 +1,73 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+#
+# .github/workflows/deploy.yml
+#
+# Builds the Zola site and publishes it to GitHub Pages.
+#
+# One-time setup: repo Settings -> Pages -> Build and deployment ->
+# Source = "GitHub Actions". Until that is set, `actions/deploy-pages` fails.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# GITHUB_TOKEN scopes: read the repo, publish a Pages deployment, and mint the
+# OIDC token that actions/deploy-pages exchanges for a Pages deployment.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one Pages deployment at a time. `cancel-in-progress: false` is
+# deliberate -- GitHub's own Pages starter workflow uses false so that a run
+# which is already publishing is never cut off half-way.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # themes/colorized is a git submodule; without this, CI checks out an
+          # empty themes/ dir and the site fails to build.
+          submodules: recursive
+
+      - name: Install Zola
+        # Pinned to the same version as local dev (`zola --version`) so that CI
+        # and local builds can never disagree. `zola` is a tool managed by this
+        # action (see its TOOLS.md), so it installs the prebuilt release binary
+        # from GitHub Releases rather than compiling from source.
+        uses: taiki-e/install-action@v2
+        with:
+          tool: zola@0.23.4
+
+      - name: Build
+        run: zola build
+
+      # Note: upload-pages-artifact skips dotfiles inside `path` unless
+      # `include-hidden-files: true` is set. Not an issue today (public/ has no
+      # dotfiles), but remember it if you ever add .well-known/ or .nojekyll.
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          # `zola build` writes here; the action's default is `_site/`.
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    # Must be on the deploying job: this creates the `github-pages` environment
+    # on the repo and surfaces the deployment URL in the Actions UI.
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

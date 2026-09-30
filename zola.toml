@@ -1,6 +1,9 @@
-# The URL the site will be built for
+# The URL the site will be built for.
+# GitHub Pages project site for github.com/zakalaka1/persite -> owner.github.io/repo
+# Change this one line if you move to a custom domain.
+# (`zola serve` overrides this with the local address, so previews are unaffected.)
 
-base_url = "https://example.com"
+base_url = "https://zakalaka1.github.io/persite"
 theme = "colorized"
 title = "The Life and Times"
 # Whether to automatically compile all Sass files in the sass directory
