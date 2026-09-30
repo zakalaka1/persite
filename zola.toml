@@ -1,0 +1,46 @@
+# The URL the site will be built for
+
+base_url = "https://example.com"
+theme = "colorized"
+title = "The Life and Times"
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = true
+
+feed_filenames = ["atom.xml"]
+generate_feeds = true
+taxonomies = [{name = "tags"}]
+
+[markdown]
+github_alerts = true
+
+[markdown.highlighting]
+theme = "catppuccin-mocha"
+
+[extra]
+# Put all your custom variables here
+landing_center = 1
+landing_chars = [
+  {char = "Th", class = "landing-title-text"},
+  {char = "e Life and Ti", class = "shimmer"},
+  {char = "mes", class = "landing-title-text"},
+]
+#landing_chars = [
+#  { char = "The Life and Times", class = "shimmer" },
+#]
+#site_title = "The Life and Times"
+copyright_holder = "Eugene Belenkov" 
+copyright_url = "/about/" # footer name links to the About page
+landing_subtitle = "Notes on projects. Thoughts, ideas, reflections" 
+
+nav_links = [
+  {name = "projects", path = "/projects"},
+  {name = "blog", path = "/blog"},
+  {name = "tags", path = "/tags"},
+]
+
+footer_links = [
+  {name = "acknowledgements", path = "/acknowledgements"},
+]

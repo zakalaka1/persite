@@ -1,0 +1,50 @@
+@import "../themes/colorized/sass/style";
+
+// Site-level additions live here as partials, so the import order keeps the
+// same file-per-component shape as the theme's own sass/style.scss.
+@import "carousel";
+
+// the below commented style is set via zola.toml
+// Make the landing-title "sides" (the spans flanking the shimmer word)
+// match the subtitle and nav links: accent base color + the same slow
+// 48s color cycle, so all three stay in lockstep.
+// .landing-title .landing-left span,
+// .landing-title .landing-right span {
+//     color: var(--accent);
+//     animation: color-cycle-slow 48s linear infinite;
+// }
+/* Header nav links (home + nav links + feed icon) cycle on inner pages.
+   Scoped to `.nav-group` because the pagination navs emitted by the blog
+   listing / post templates (`.container > nav.pagination`) are also direct
+   children of `.container`; they keep their static accent colour. */
+.container>nav .nav-group a {
+    animation: color-cycle-slow 48s linear infinite;
+}
+
+/* "reduce motion" toggle cycles on landing + inner pages */
+.landing .reduce-motion-toggle,
+footer .reduce-motion-toggle {
+    animation: color-cycle-slow 48s linear infinite;
+}
+
+/* Freeze the cycling when the visitor toggles "reduce motion" ON */
+html.reduce-motion .container>nav .nav-group a,
+html.reduce-motion .reduce-motion-toggle {
+    animation: none;
+}
+
+/* Also freeze under OS-level reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .container>nav .nav-group a,
+    .reduce-motion-toggle {
+        animation: none;
+    }
+}
+
+/* Landing title: keep the letter-level shimmer on one line. Scale with the
+   viewport instead of wrapping, so mid-word shimmer splits never break. */
+.landing-title {
+    white-space: nowrap;
+    font-size: min(4rem, 8vw);
+}

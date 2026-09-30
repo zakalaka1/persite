@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" role="img" aria-label="Placeholder screenshot">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2c2620"/>
+      <stop offset="1" stop-color="#11111e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="800" fill="url(#bg)"/>
+  <rect x="440" y="88" width="400" height="624" rx="36" fill="#11111e"/>
+  <rect x="456" y="104" width="368" height="592" rx="26" fill="#1a1a2e"/>
+  <rect x="580" y="126" width="120" height="14" rx="7" fill="#2a2a40"/>
+  <rect x="480" y="180" width="200" height="18" rx="9" fill="#d4a76a"/>
+  <rect x="480" y="230" width="320" height="72" rx="12" fill="#2a2a40"/>
+  <rect x="504" y="252" width="140" height="12" rx="6" fill="#4a4a66"/>
+  <rect x="504" y="276" width="200" height="10" rx="5" fill="#3a3a52"/>
+  <rect x="480" y="318" width="320" height="72" rx="12" fill="#2a2a40"/>
+  <rect x="504" y="340" width="170" height="12" rx="6" fill="#4a4a66"/>
+  <rect x="504" y="364" width="180" height="10" rx="5" fill="#3a3a52"/>
+  <rect x="480" y="406" width="320" height="72" rx="12" fill="#2a2a40"/>
+  <rect x="504" y="428" width="120" height="12" rx="6" fill="#4a4a66"/>
+  <rect x="504" y="452" width="220" height="10" rx="5" fill="#3a3a52"/>
+  <rect x="480" y="494" width="320" height="72" rx="12" fill="#2a2a40"/>
+  <rect x="504" y="516" width="160" height="12" rx="6" fill="#4a4a66"/>
+  <rect x="504" y="540" width="190" height="10" rx="5" fill="#3a3a52"/>
+  <rect x="480" y="610" width="320" height="48" rx="12" fill="#d4a76a"/>
+  <text x="640" y="756" text-anchor="middle" font-family="monospace" font-size="34" fill="#888888">placeholder screenshot 3</text>
+</svg>

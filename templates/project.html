@@ -1,0 +1,114 @@
+{% extends "post.html" %}
+
+{# Project detail pages reuse the blog post layout (title, date, tags, table of
+   contents, prev/next links), minus the feed <link> and nav feed icon, since
+   the projects section has no Atom feed.
+
+   The content block below is reproduced from the theme's post.html because Tera
+   has no super() and post.html exposes no hook between its date line and the
+   body. The only additions are the optional rows after the accent divider:
+   Languages, Links, and the horizontal screenshots carousel. If the theme's
+   post.html ever changes, re-sync this block. #}
+{% block head %}{% endblock %}
+{% block nav_extra %}{% endblock %}
+
+{% block content %}
+<article>
+  <h1>{{ page.title }}</h1>
+  <div class="post-meta">
+    <time datetime="{{ page.date }}">{{ page.date | date(format="%Y-%m-%d") }}</time>
+    {%- if page.taxonomies.tags %}
+    &middot;
+    {%- for tag in page.taxonomies.tags %}
+    <a href="{{ get_taxonomy_url(kind="tags", name=tag) }}">{{ tag }}</a>
+    {%- if not loop.last %}, {% endif %}
+    {%- endfor %}
+    {%- endif %}
+  </div>
+  <div class="dashed-accent"></div>
+  {# Optional per-project metadata, same muted monospace as the date line above.
+     Both rows are skipped when the field is absent, so a project needs no extra
+     front matter to render correctly. #}
+  {% if page.extra.languages is defined and page.extra.languages %}
+  <div class="post-meta">
+    Languages:{% for lang in page.extra.languages %} {{ lang }}{% if not loop.last %} ·{% endif %}{% endfor %}
+  </div>
+  {% endif %}
+  {% if page.extra.links is defined and page.extra.links %}
+  <div class="post-meta">
+    Links:{% for link in page.extra.links %} <a href="{{ link.url | safe }}">{{ link.name }}</a>{% if not loop.last %} ·{% endif %}{% endfor %}
+  </div>
+  {% endif %}
+  {# Optional horizontal screenshot carousel, styled by sass/_carousel.scss.
+     Native scroll-snap only, no JavaScript: the visitor scrolls the strip
+     sideways (trackpad, the accent scrollbar, or arrow keys once focused).
+
+     Front matter shape, one block per screenshot:
+       [[extra.screenshots]]
+       src = "screenshot-1.svg"
+       alt = "What the image shows"
+       caption = "Optional label printed under the image"
+
+     `src` is used as-is when it starts with "/" or "http"; otherwise it is
+     resolved against this page's own URL, which is where Zola copies the
+     assets of a page bundle (content/projects/<slug>/). `alt` falls back to
+     `caption` so an entry can get away with naming the image only once. #}
+  {% if page.extra.screenshots is defined and page.extra.screenshots %}
+  <div class="post-meta">Screenshots</div>
+  <div class="screenshot-carousel" tabindex="0" role="group" aria-roledescription="carousel" aria-label="Screenshots">
+    {% for shot in page.extra.screenshots %}
+    {% set src = shot.src | default(value="") %}
+    {% if src and not src is starting_with(pat="/") and not src is starting_with(pat="http") %}
+    {% set src = page.permalink ~ src %}
+    {% endif %}
+    <figure class="carousel-slide">
+      <img src="{{ src | safe }}" alt="{{ shot.alt | default(value=shot.caption | default(value='')) | escape_html }}" loading="lazy" decoding="async">
+      {% if shot.caption %}
+      <figcaption>{{ shot.caption | escape_html }}</figcaption>
+      {% endif %}
+    </figure>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if page.toc %}
+  <nav class="toc">
+    <span class="toc-title">Contents</span>
+    <ul>
+    {% for h in page.toc %}
+      <li>
+        <a href="{{ h.permalink | safe }}">{{ h.title }}</a>
+        {% if h.children %}
+        <ul>
+          {% for child in h.children %}
+          <li><a href="{{ child.permalink | safe }}">{{ child.title }}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  </nav>
+  {% endif %}
+  <div class="post-body">
+    {{ page.content | safe }}
+  </div>
+</article>
+<script>
+document.querySelectorAll('.post-body table').forEach(function(table) {
+  var cols = table.querySelector('tr').children.length;
+  if (cols <= 2) table.style.minWidth = '400px';
+  else if (cols === 3) table.style.minWidth = '600px';
+  else table.style.minWidth = (cols * 200) + 'px';
+  var wrapper = document.createElement('div');
+  wrapper.className = 'table-scroll';
+  table.parentNode.insertBefore(wrapper, table);
+  wrapper.appendChild(table);
+});
+</script>
+{% if page.lower or page.higher %}
+<nav class="pagination">
+  {% if page.higher %}<a href="{{ page.higher.permalink }}">← prev</a>{% endif %}
+  {% if page.lower %}<a href="{{ page.lower.permalink }}">next →</a>{% endif %}
+</nav>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+# ---------------------------------------------------------------------------
+# Zola build output
+# ---------------------------------------------------------------------------
+# `zola build` and `zola serve` write everything here (HTML, style.css, copied
+# static assets, search index). It is fully regenerated from content/,
+# templates/, sass/ and static/ on every build, so never commit it.
+# The leading slash anchors the rule to the repo root.
+/public/
+
+# ---------------------------------------------------------------------------
+# OS / editor cruft
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# VS Code: uncomment if you don't want to share workspace config.
+# .vscode/
+
+# NOTE: themes/colorized is a git submodule pinned by .gitmodules.
+# Do not add it here -- git records only the commit pointer, and ignoring the
+# path would break `git submodule update --init --recursive`.

@@ -1,0 +1,7 @@
+{% extends "blog.html" %}
+
+{# The projects listing reuses the blog's layout (post-list + pagination) but
+   this section generates no Atom feed, so drop the feed <link> in <head> and
+   the feed icon in the nav. Everything else is inherited from the theme. #}
+{% block head %}{% endblock %}
+{% block nav_extra %}{% endblock %}
