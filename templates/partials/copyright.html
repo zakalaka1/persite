@@ -1,0 +1,8 @@
+{%- set cu = config.extra.copyright_url | default(value=config.base_url) -%}
+<span>&copy; {{ now() | date(format="%Y") }} <a
+        href="{% if cu is starting_with(pat="http") %}{{ cu }}{% else %}{{ get_url(path=cu) }}{% endif %}">{{ config.extra.copyright_holder |
+        default(value=config.title) }}</a>{% if config.extra.footer_links is defined -%}{% for link in
+    config.extra.footer_links %} &middot; <a
+        href="{% if link.path is starting_with(pat="http") %}{{ link.path }}{% else %}{{ get_url(path=link.path) }}{% endif %}">{{
+        link.name }}</a>{% endfor -%}{%
+    endif %}</span>
