@@ -17,6 +17,7 @@
    Scoped to `.nav-group` because the pagination navs emitted by the blog
    listing / post templates (`.container > nav.pagination`) are also direct
    children of `.container`; they keep their static accent colour. */
+
 .container>nav .nav-group a {
     animation: color-cycle-slow 48s linear infinite;
 }
