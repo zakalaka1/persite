@@ -2,6 +2,11 @@
 
 // Site-level additions live here as partials, so the import order keeps the
 // same file-per-component shape as the theme's own sass/style.scss.
+
+// Reload the theme fonts with base-relative URLs so they also resolve when the
+// site is served from a subpath (e.g. a GitHub project page at /persite/).
+@import "font-faces";
+
 @import "carousel";
 
 // the below commented style is set via zola.toml
@@ -48,4 +53,18 @@ html.reduce-motion .reduce-motion-toggle {
 .landing-title {
     white-space: nowrap;
     font-size: min(4rem, 8vw);
+}
+
+/* Make About page body text match regular post/paragraph text
+   (post-body inherits body's 1rem / line-height 1.6). */
+.about-body {
+    font-size: inherit;
+    /* 1rem, same as .post-body */
+    line-height: inherit;
+    /* 1.6, same as body default */
+}
+
+.about-body p {
+    margin-bottom: 1rem;
+    /* match typography.scss `p` spacing */
 }

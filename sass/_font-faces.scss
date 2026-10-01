@@ -1,0 +1,45 @@
+// Re-declare the theme's @font-face rules with base-relative URLs.
+//
+// The theme (themes/colorized/sass/fonts/*.scss) declares its fonts with a
+// root-absolute path, e.g. url("/fonts/space-grotesk/…"). That only resolves
+// when the site is served from the domain root. On a GitHub *project* page the
+// site lives under a subpath (/persite/), so "/fonts/…" 404s and the browser
+// silently falls back to system fonts — making it differ from the local build.
+//
+// These relative URLs ("fonts/…", no leading slash) resolve against the
+// compiled stylesheet's own location, so they work both at the site root and
+// under a subpath. Because a later @font-face with the same family / weight /
+// style wins, these override the theme's declarations without editing the
+// submodule.
+
+@font-face {
+    font-display: swap;
+    font-family: "Space Grotesk";
+    font-style: normal;
+    font-weight: 300 700;
+    src: url("fonts/space-grotesk/SpaceGrotesk-VariableFont_wght.woff2") format("woff2-variations");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: "Martian Mono";
+    font-style: normal;
+    font-weight: 400;
+    src: url("fonts/martian-mono/MartianMono-StdRg-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: "JetBrains Mono";
+    font-style: normal;
+    font-weight: 400;
+    src: url("fonts/jetbrains-mono/JetBrainsMono-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: "JetBrains Mono";
+    font-style: italic;
+    font-weight: 400;
+    src: url("fonts/jetbrains-mono/JetBrainsMono-Italic.woff2") format("woff2");
+}
