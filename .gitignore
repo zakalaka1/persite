@@ -13,11 +13,12 @@
 .DS_Store
 Thumbs.db
 desktop.ini
+persite.code-workspace
 *.swp
 *~
 
 # VS Code: uncomment if you don't want to share workspace config.
-# .vscode/
+.vscode/
 
 # NOTE: themes/colorized is a git submodule pinned by .gitmodules.
 # Do not add it here -- git records only the commit pointer, and ignoring the

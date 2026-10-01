@@ -33,10 +33,10 @@ landing_chars = [
 #landing_chars = [
 #  { char = "The Life and Times", class = "shimmer" },
 #]
-#site_title = "The Life and Times"
 copyright_holder = "Eugene Belenkov" 
 copyright_url = "/about/" # footer name links to the About page
 landing_subtitle = "Notes on projects. Thoughts, ideas, reflections" 
+site_title = "The Life and Times" 
 
 nav_links = [
   {name = "projects", path = "/projects"},
