@@ -16,6 +16,7 @@ desktop.ini
 persite.code-workspace
 *.swp
 *~
+/site_prep/
 
 # VS Code: uncomment if you don't want to share workspace config.
 .vscode/
