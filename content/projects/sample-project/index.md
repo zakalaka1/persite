@@ -3,6 +3,9 @@ title = "Sample project"
 description = "Placeholder entry showing how the projects list and detail pages work. Delete the sample-project folder once you add real projects."
 date = 2026-09-30
 
+[taxonomies]
+tags = ["demo"]
+
 # Optional: rendered as a "Languages:" row under the date. Omit for no row.
 [extra]
 languages = ["Rust", "Kotlin", "Jetpack Compose"]

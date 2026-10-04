@@ -9,7 +9,7 @@ subtitle = "A little about me and this site."
 
 ## Hello
 
-{{ <image url="bluebird_bird_perched_wildlife.jpg" position="right" alt="" content_path={page.path} /> }}
+{{ <image url="me_last_small1.jpg" position="right" alt="eug" content_path={page.path} /> }}
 
 I'm Eugene.
 
