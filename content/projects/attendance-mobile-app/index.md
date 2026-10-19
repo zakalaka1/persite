@@ -67,7 +67,7 @@ Taking student attendance with pen and paper—as my spouse had been doing—and
 
 ## Check of what's available
 
-CI checked what was available in app stores, but the options did not fit the simple requirements of just taking attendance and producing an on-demand CSV monthly attendance matrix.
+I checked what was available in app stores, but the options did not fit the simple requirements of just taking attendance and producing an on-demand CSV monthly attendance matrix.
 
 ## Distilled requirements
 
