@@ -11,7 +11,7 @@ subtitle = "A little about me and this site."
 
 {{ <image url="me_last_small1.jpg" position="right" alt="eug" content_path={page.path} /> }}
 
-Hi, I'm Eugene.
+I'm Eugene.
 
 With background in mechanical engineering and computer programming, I began my IT career at a major Canadian bank in the early 2000s as a co-op. I started as a mainframe (Host) developer, working on payment systems applications — building enhancements and performing testing. Two years later, I transferred to the Customer systems team, where I stayed until 2006, when I joined a team building the ETL layer to populate the bank's warehouses and data marts.
 
